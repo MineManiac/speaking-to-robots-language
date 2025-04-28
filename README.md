@@ -89,3 +89,46 @@ Este documento define, em EBNF, uma gramática de **Controle de Robô**, com sup
 (* Identificadores e tipos *)
 <identifier> ::= letter { letter | digit | "_" }
 <type>       ::= "int" | "bool" | "string"
+
+```
+
+## Exemplos de Programas
+
+A seguir, veja alguns exemplos de como escrever programas.
+
+---
+
+### Exemplo 1: Movimento Básico  
+Move o robô 4 passos, girando à esquerda após cada passo.
+
+```rbt
+var passos: int;
+passos = 4;
+
+for i = 1 to passos {
+    moveForward();
+    turnLeft();
+}
+```
+
+### Exemplo 2: Coletar e Depositar Objetos
+O robô anda até coletar 3 objetos, depois retorna e solta cada um.
+
+```rbt
+var coletados: int;
+coletados = 0;
+
+while (coletados < 3) {
+    moveForward();
+    if (sensor.front != "wall") {
+        pick();
+        coletados = coletados + 1;
+    }
+}
+
+for i = 1 to coletados {
+    moveForward();
+    drop();
+}
+```
+
