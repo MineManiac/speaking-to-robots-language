@@ -1,15 +1,18 @@
 # Speaking-to-Robots-Language
+
 Lógica da Computação APS
 
-Este documento define, em EBNF, uma gramática de **Controle de Robô**, com suporte a:
+Este repositório implementa uma **DSL de Controle de Robô**, com suporte a:
 
-- Declaração de variáveis  
-- Atribuições  
-- Comandos de movimento  
-- Estruturas de controle (`if`, `for`, `while`)  
-- Acesso a sensores do robô  
+* Declaração de variáveis
+* Atribuições
+* Comandos de movimento
+* Estruturas de controle (`if`, `for`, `while`)
+* Acesso a sensores do robô
 
 ---
+
+## Gramática em EBNF
 
 ```ebnf
 (* Programa = sequência de sentenças *)
@@ -17,7 +20,7 @@ Este documento define, em EBNF, uma gramática de **Controle de Robô**, com sup
 
 (* Sentenças *)
 <statement> ::=
-    <var_decl> 
+    <var_decl>
   | <assignment>
   | <if_stmt>
   | <for_stmt>
@@ -89,17 +92,11 @@ Este documento define, em EBNF, uma gramática de **Controle de Robô**, com sup
 (* Identificadores e tipos *)
 <identifier> ::= letter { letter | digit | "_" }
 <type>       ::= "int" | "bool" | "string"
-
 ```
 
 ## Exemplos de Programas
 
-A seguir, veja alguns exemplos de como escrever programas.
-
----
-
-### Exemplo 1: Movimento Básico  
-Move o robô 4 passos, girando à esquerda após cada passo.
+### Exemplo 1: Movimento Básico
 
 ```rbt
 var passos: int;
@@ -112,7 +109,6 @@ for i = 1 to passos {
 ```
 
 ### Exemplo 2: Coletar e Depositar Objetos
-O robô anda até coletar 3 objetos, depois retorna e solta cada um.
 
 ```rbt
 var coletados: int;
@@ -132,3 +128,44 @@ for i = 1 to coletados {
 }
 ```
 
+---
+
+## Compilação e Execução
+
+Para gerar o analisador e o interpretador sintático:
+
+```bash
+bison -d parser.y       # gera parser.tab.c e parser.tab.h
+flex scanner.l          # gera lex.yy.c
+gcc -o robolang parser.tab.c lex.yy.c -lfl
+```
+
+Para executar um programa `.rbt`:
+
+```bash
+./robolang < programa.rbt
+```
+
+## Testes
+
+* **Validados**: entradas que seguem a EBNF devem retornar exit code `0` e nenhuma mensagem de erro.
+* **Inválidos**: entradas fora da gramática devem imprimir `Erro: syntax error` e retornar código diferente de `0`.
+
+Exemplo de teste inválido:
+
+```rbt
+for i = to 5 { moveForward(); }
+```
+
+---
+
+## Estrutura de Arquivos
+
+```
+README.md
+parser.y      # Definição da gramática Bison
+scanner.l     # Definição do scanner Flex
+programa.rbt  # Arquivo Robot
+```
+
+> **Observação**: arquivos gerados (`lex.yy.c`, `parser.tab.c`, `parser.tab.h`, `robolang`) não devem ser commitados.

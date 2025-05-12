@@ -1,0 +1,15 @@
+var coletados: int;
+coletados = 0;
+
+while (coletados < 3) {
+    moveForward();
+    if (sensor.front != "wall") {
+        pick();
+        coletados = coletados + 1;
+    }
+}
+
+for i = 1 to coletados {
+    moveForward();
+    drop();
+}
