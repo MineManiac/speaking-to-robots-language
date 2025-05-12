@@ -1,0 +1,7 @@
+# Arquivos gerados pelo Flex/Bison
+lex.yy.c
+parser.tab.c
+parser.tab.h
+
+# Executável
+robolang
