@@ -1,0 +1,8 @@
+var status: string;
+
+status = sensor.front;
+if (status == "wall") {
+    turnRight();
+} else {
+    moveForward();
+}

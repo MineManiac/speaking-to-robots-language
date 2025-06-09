@@ -1,0 +1,7 @@
+var x: int;
+var flag: bool;
+var nome: string;
+
+x = 1 + 2 * 3;
+flag = true;
+nome = "robot";

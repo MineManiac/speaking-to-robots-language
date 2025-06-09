@@ -1,0 +1,8 @@
+var c: int;
+c = 0;
+
+while (c < 3) {
+    moveForward();
+    c = c + 1;
+}
+

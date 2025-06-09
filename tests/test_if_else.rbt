@@ -1,0 +1,14 @@
+var a: int;
+var b: int;
+var ok: bool;
+
+a = 5;
+b = 10;
+ok = false;
+
+if (a < b && b != 0) {
+    ok = true;
+} else {
+    ok = false;
+}
+

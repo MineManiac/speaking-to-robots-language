@@ -1,0 +1,4 @@
+var i: int;
+for i = 2 to 5 {
+    turnLeft();
+}

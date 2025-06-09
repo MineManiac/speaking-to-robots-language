@@ -1,0 +1,17 @@
+var total: int;
+total = 0;
+
+{
+    var i: int;
+    for i = 1 to 3 {
+        {
+            pick();
+            moveForward();
+        }
+        total = total + 1;
+    }
+}
+
+if (total == 3) {
+    drop();
+}
