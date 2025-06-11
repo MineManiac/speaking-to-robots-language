@@ -10,6 +10,8 @@ Este repositório implementa uma **DSL de Controle de Robô**, com suporte a:
 * Estruturas de controle (`if`, `for`, `while`)
 * Acesso a sensores do robô
 
+* Interpretação via Python VM: este projeto usa um interpretador em Python que executa a AST sobre a Python VM, cumprindo o requisito de utilizar uma máquina virtual para rodar a linguagem.
+
 ---
 
 ## Gramática em EBNF
